@@ -20,12 +20,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     //delvolvemos una respuesta
     header('Content-Type: application/json');
+    //el reult eesta en la clase de respuesta 
     if(isset($datosArray["result"]["error_id"])){
+    
         $responseCode = $datosArray["result"]["error_id"];
         http_response_code($responseCode);
     }else{
         http_response_code(200);
     }
+    //al codificarlo como json lo estamos volviendo un string 
     echo json_encode($datosArray);
 
 
