@@ -56,6 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
 
 }else if($_SERVER['REQUEST_METHOD'] == "DELETE"){
 
+    //obtengo de los header infomacion en este caso el token y el id del paciente 
         $headers = getallheaders();
         if(isset($headers["token"]) && isset($headers["pacienteId"])){
             //recibimos los datos enviados por el header
@@ -63,7 +64,9 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
                 "token" => $headers["token"],
                 "pacienteId" =>$headers["pacienteId"]
             ];
+            //convierto todo esto en json 
             $postBody = json_encode($send);
+            //si del header no recibi nada lo recibo del body
         }else{
             //recibimos los datos enviados
             $postBody = file_get_contents("php://input");
