@@ -19,6 +19,7 @@ class auth extends conexion{
             //todo esta bien 
             $usuario = $datos['usuario'];
             $password = $datos['password'];
+            //encripto el password que nos envian 
             $password = parent::encriptar($password);
             $datos = $this->obtenerDatosUsuario($usuario);
             if($datos){
@@ -60,6 +61,7 @@ class auth extends conexion{
         $datos = parent::obtenerDatos($query);
      //pregunto si el correo exite en la bd 
         if(isset($datos[0]["UsuarioId"])){
+            //si exite devuelvo los datos 
             return $datos;
         }else{
             return 0;
