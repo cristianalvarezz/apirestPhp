@@ -35,4 +35,44 @@ class conexion
         $jsondata = file_get_contents($direccion . "/" . "config");
         return json_decode($jsondata, true);
     }
+
+    //esto para convertir caracteres a utf8 y no tenga problema con las ñ y las tildes
+    //los registros los convertira a utf8
+    private function convertirUTF8($array){
+        array_walk_recursive($array,function(&$item,$key){
+            if(!mb_detect_encoding($item,'utf-8',true)){
+                $item = utf8_encode($item);
+            }
+        });
+        return $array;
+    
+    }
+    //obtengo los objetos de la base de datos 
+    public function obtenerDatos($sqlstr){
+        $results = $this->conexion->query($sqlstr);
+        $resultArray = array();
+        foreach ($results as $key) {
+            $resultArray[] = $key;
+        }
+        return $this->convertirUTF8($resultArray);
+    }
+
+    //metodo para guardar 
+    public function nonQuery($sqlstr){
+        $results = $this->conexion->query($sqlstr);
+        return $this->conexion->affected_rows;
+    }
+
+     //guardar y nos devuelve el id de lo guardado 
+     public function nonQueryId($sqlstr){
+        $results = $this->conexion->query($sqlstr);
+         $filas = $this->conexion->affected_rows;
+         if($filas >= 1){
+            return $this->conexion->insert_id;
+         }else{
+             return 0;
+         }
+    }
+     
+
 }
