@@ -68,11 +68,18 @@ class conexion
         $results = $this->conexion->query($sqlstr);
          $filas = $this->conexion->affected_rows;
          if($filas >= 1){
+             //si hay fila afectada me devuelve este id
             return $this->conexion->insert_id;
          }else{
              return 0;
          }
     }
+      //encriptar
+
+      protected function encriptar($string){
+        return md5($string);
+    }
+
      
 
 }
