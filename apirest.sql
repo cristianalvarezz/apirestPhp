@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2021 a las 19:04:20
+-- Tiempo de generación: 06-09-2021 a las 20:05:38
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
 
@@ -61,23 +61,26 @@ CREATE TABLE `pacientes` (
   `Telefono` varchar(45) DEFAULT NULL,
   `Genero` varchar(45) DEFAULT NULL,
   `FechaNacimiento` date DEFAULT NULL,
-  `Correo` varchar(45) DEFAULT NULL
+  `Correo` varchar(45) DEFAULT NULL,
+  `Imagen` varchar(400) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `pacientes`
 --
 
-INSERT INTO `pacientes` (`PacienteId`, `DNI`, `Nombre`, `Direccion`, `CodigoPostal`, `Telefono`, `Genero`, `FechaNacimiento`, `Correo`) VALUES
-(1, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '1988-11-30', 'alvarez@gmail.com'),
-(3, 'C000000003', 'Marcela Dubon', 'Calle de pruebas 3', '20003', '633281511', 'F', '2000-07-22', 'Paciente3@gmail.com'),
-(4, 'D000000004', 'Maria Mendez', 'Calle de pruebas 4', '20004', '633281516', 'F', '1980-01-01', 'Paciente4@gmail.com'),
-(5, 'E000000005', 'Zamuel Valladares', 'Calle de pruebas 5', '20006', '633281519', 'M', '1985-12-15', 'Paciente5@gmail.com'),
-(6, 'F000000006', 'Angel Rios', 'Calle de pruebas 6', '20005', '633281510', 'M', '1988-11-30', 'Paciente6@gmail.com'),
-(7, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '0000-00-00', 'alvarez@gmail.com'),
-(10, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '1988-11-30', 'alvarez@gmail.com');
+INSERT INTO `pacientes` (`PacienteId`, `DNI`, `Nombre`, `Direccion`, `CodigoPostal`, `Telefono`, `Genero`, `FechaNacimiento`, `Correo`, `Imagen`) VALUES
+(1, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '1988-11-30', 'alvarez@gmail.com', NULL),
+(3, 'C000000003', 'Marcela Dubon', 'Calle de pruebas 3', '20003', '633281511', 'F', '2000-07-22', 'Paciente3@gmail.com', NULL),
+(4, 'D000000004', 'Maria Mendez', 'Calle de pruebas 4', '20004', '633281516', 'F', '1980-01-01', 'Paciente4@gmail.com', NULL),
+(5, 'E000000005', 'Zamuel Valladares', 'Calle de pruebas 5', '20006', '633281519', 'M', '1985-12-15', 'Paciente5@gmail.com', NULL),
+(6, 'F000000006', 'Angel Rios', 'Calle de pruebas 6', '20005', '633281510', 'M', '1988-11-30', 'Paciente6@gmail.com', NULL),
+(7, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '0000-00-00', 'alvarez@gmail.com', NULL),
+(10, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '1988-11-30', 'alvarez@gmail.com', NULL),
+(11, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '1988-11-30', 'alvarez@gmail.com', 'C:/xampp/htdocs/apirest/public/imagenes/6136578f696fb.Array'),
+(12, '123456', 'Christian', 'Cra 854 No 79-127', '123', '3234600627', 'Maculino', '1988-11-30', 'alvarez@gmail.com', 'C:/xampp/htdocs/apirest/public/imagenes/6136584301573.Array');
 
 -- --------------------------------------------------------
 
@@ -126,19 +129,20 @@ CREATE TABLE `usuarios_token` (
 --
 
 INSERT INTO `usuarios_token` (`TokenId`, `UsuarioId`, `Token`, `Estado`, `Fecha`) VALUES
-(1, '1', 'bac77238e484422cf6bc51f86e5b52e3', 'Activo', '2021-09-06 17:48:00'),
-(2, '1', '3ee64a1cb2ea6b85c865c9556df7be32', 'Activo', '2021-09-06 17:56:00'),
-(3, '1', '6e56de91d33a5156510a3cfea820a4a9', 'Activo', '2021-09-06 17:56:00'),
-(4, '1', 'b8e6c2ff6e7c6ba1a022203ad4ec78d1', 'Activo', '2021-09-06 17:56:00'),
-(5, '1', 'f6862bd4f171c6a2a89c9c6caaf2ba52', 'Activo', '2021-09-06 17:56:00'),
-(6, '1', '49f92dc2ce430696d893234c1320eb08', 'Activo', '2021-09-06 17:56:00'),
-(7, '1', 'f5cd77517135a928895485c5e9b2393c', 'Activo', '2021-09-06 17:56:00'),
-(8, '1', '95591e9e93102956a21343a03028b738', 'Activo', '2021-09-06 17:57:00'),
-(9, '1', '79ad25c3c7e407c5c647c2f5e6773261', 'Activo', '2021-09-06 17:57:00'),
-(10, '1', 'bfc2344c4d07d10ab570cacd0b2d2861', 'Activo', '2021-09-06 17:57:00'),
-(11, '1', '1373bbd8aa56ee534814d5f662e4bc35', 'Activo', '2021-09-06 17:57:00'),
-(12, '1', 'e1f0b97d03361e19cd972357ce87dccd', 'Activo', '2021-09-06 18:00:00'),
-(13, '1', 'f7d750a18f679e15fa7e89ea96aa44b8', 'Activo', '2021-09-06 18:05:00');
+(1, '1', 'bac77238e484422cf6bc51f86e5b52e3', 'Inactivo', '2021-09-06 17:48:00'),
+(2, '1', '3ee64a1cb2ea6b85c865c9556df7be32', 'Inactivo', '2021-09-06 17:56:00'),
+(3, '1', '6e56de91d33a5156510a3cfea820a4a9', 'Inactivo', '2021-09-06 17:56:00'),
+(4, '1', 'b8e6c2ff6e7c6ba1a022203ad4ec78d1', 'Inactivo', '2021-09-06 17:56:00'),
+(5, '1', 'f6862bd4f171c6a2a89c9c6caaf2ba52', 'Inactivo', '2021-09-06 17:56:00'),
+(6, '1', '49f92dc2ce430696d893234c1320eb08', 'Inactivo', '2021-09-06 17:56:00'),
+(7, '1', 'f5cd77517135a928895485c5e9b2393c', 'Inactivo', '2021-09-06 17:56:00'),
+(8, '1', '95591e9e93102956a21343a03028b738', 'Inactivo', '2021-09-06 17:57:00'),
+(9, '1', '79ad25c3c7e407c5c647c2f5e6773261', 'Inactivo', '2021-09-06 17:57:00'),
+(10, '1', 'bfc2344c4d07d10ab570cacd0b2d2861', 'Inactivo', '2021-09-06 17:57:00'),
+(11, '1', '1373bbd8aa56ee534814d5f662e4bc35', 'Inactivo', '2021-09-06 17:57:00'),
+(12, '1', 'e1f0b97d03361e19cd972357ce87dccd', 'Inactivo', '2021-09-06 18:00:00'),
+(13, '1', 'f7d750a18f679e15fa7e89ea96aa44b8', 'Inactivo', '2021-09-06 18:05:00'),
+(14, '1', '14de46e7e0cc718f3d5df9b2efbe8ed1', 'Activo', '2021-09-06 20:01:00');
 
 --
 -- Índices para tablas volcadas
@@ -182,7 +186,7 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `PacienteId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `PacienteId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -194,7 +198,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios_token`
 --
 ALTER TABLE `usuarios_token`
-  MODIFY `TokenId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `TokenId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

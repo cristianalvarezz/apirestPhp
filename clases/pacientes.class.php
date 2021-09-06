@@ -16,6 +16,7 @@ class pacientes extends conexion {
     private $fechaNacimiento = "0000-00-00";
     private $correo = "";
     private $token = "";
+    private $imagen="";
 //912bc00f049ac8464472020c5cd06759
 
     public function listaPacientes($pagina = 1){
@@ -59,6 +60,12 @@ class pacientes extends conexion {
                     if(isset($datos['codigoPostal'])) { $this->codigoPostal = $datos['codigoPostal']; }
                     if(isset($datos['genero'])) { $this->genero = $datos['genero']; }
                     if(isset($datos['fechaNacimiento'])) { $this->fechaNacimiento = $datos['fechaNacimiento']; }
+                  
+                  if(isset($datos['imagen'])){
+                      $resp=$this->procesarImagen($datos['imagen']);
+                      $this->imagen =$resp;
+                    }
+                  
                     $resp = $this->insertarPaciente();
                     if($resp){
                         $respuesta = $_respuestas->response;
@@ -81,11 +88,24 @@ class pacientes extends conexion {
 
     }
 
+private function procesarImagen($img){
 
+    //primero convierto imagen 
+    //https://www.base64-image.de/
+    $direccion =dirname(__DIR__) . "\public\imagenes\\"; 
+    $partes = explode(";base64,",$img);
+    $extencion = explode('/',mime_content_type($img)[1]);
+    $imagen_base64 = base64_decode($partes[1]);
+    $file=$direccion . uniqid() . "." . $extencion ;
+
+    file_put_contents($file,$imagen_base64);
+    $nuevadireccion = str_replace('\\','/',$file);
+    return $nuevadireccion;
+}
     private function insertarPaciente(){
-        $query = "INSERT INTO " . $this->table . " (DNI,Nombre,Direccion,CodigoPostal,Telefono,Genero,FechaNacimiento,Correo)
+        $query = "INSERT INTO " . $this->table . " (DNI,Nombre,Direccion,CodigoPostal,Telefono,Genero,FechaNacimiento,Correo,Imagen)
         values
-        ('" . $this->dni . "','" . $this->nombre . "','" . $this->direccion ."','" . $this->codigoPostal . "','"  . $this->telefono . "','" . $this->genero . "','" . $this->fechaNacimiento . "','" . $this->correo . "')"; 
+        ('" . $this->dni . "','" . $this->nombre . "','" . $this->direccion ."','" . $this->codigoPostal . "','"  . $this->telefono . "','" . $this->genero . "','" . $this->fechaNacimiento . "','" . $this->correo . "','" . $this->imagen . "')"; 
         $resp = parent::nonQueryId($query);
         if($resp){
              return $resp;
@@ -225,6 +245,3 @@ class pacientes extends conexion {
 
 
 }
-
-?>
-
